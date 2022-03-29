@@ -77,12 +77,12 @@ public class DailyWeatherController {
                 dailyWeather.setWind_deg(Integer.parseInt(daily.get("wind_deg").toString()));
                 dailyWeather.setWind_gust(Float.parseFloat(daily.get("wind_gust").toString()));
 
-                dailyWeather.setTemp_day(Float.parseFloat(temp.get("day").toString()));
-                dailyWeather.setTemp_min(Float.parseFloat(temp.get("min").toString()));
-                dailyWeather.setTemp_max(Float.parseFloat(temp.get("max").toString()));
-                dailyWeather.setTemp_night(Float.parseFloat(temp.get("night").toString()));
-                dailyWeather.setTemp_eve(Float.parseFloat(temp.get("eve").toString()));
-                dailyWeather.setTemp_morn(Float.parseFloat(temp.get("morn").toString()));
+                dailyWeather.setTemp_day((float) (Float.parseFloat(temp.get("day").toString()) - 273.15));
+                dailyWeather.setTemp_min((float) (Float.parseFloat(temp.get("min").toString()) - 273.15));
+                dailyWeather.setTemp_max((float) (Float.parseFloat(temp.get("max").toString()) -273.15));
+                dailyWeather.setTemp_night((float) (Float.parseFloat(temp.get("night").toString()) -273.15));
+                dailyWeather.setTemp_eve((float) (Float.parseFloat(temp.get("eve").toString()) -273.15));
+                dailyWeather.setTemp_morn((float) (Float.parseFloat(temp.get("morn").toString()) -273.15));
 
                 dailyWeather.setFeelsLike_day(Float.parseFloat(feels_like.get("day").toString()));
                 dailyWeather.setFeelsLike_night(Float.parseFloat(feels_like.get("night").toString()));
