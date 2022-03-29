@@ -3,6 +3,10 @@ package com.example.weather.domain;
 
 import lombok.*;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.TimeZone;
+
 
 @Data
 @Builder
@@ -20,11 +24,11 @@ public class CurrentWeather {
 
     private long timezone_offset;
 
-    private long current_dt;
+    private String current_dt;
 
-    private long current_sunrise;
+    private String current_sunrise;
 
-    private long current_sunset;
+    private String current_sunset;
 
     private float current_temp;
 
@@ -57,6 +61,16 @@ public class CurrentWeather {
     private String weather_icon;
 
 
+
+    public String changeUnixTime (String timeStampStr) {
+        long timeStamp = Long.parseLong(timeStampStr);
+        Date date = new Date(timeStamp * 1000L);
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        sdf.setTimeZone(TimeZone.getTimeZone("GMT+9"));
+        String formattedDate = sdf.format(date);
+
+        return formattedDate;
+    }
 
 }
 
