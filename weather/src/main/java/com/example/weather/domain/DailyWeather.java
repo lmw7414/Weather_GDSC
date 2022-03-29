@@ -4,6 +4,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
 import javax.persistence.Id;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.TimeZone;
 
 
 @Data
@@ -22,15 +25,15 @@ public class DailyWeather {
 
     private long timezone_offset;
 
-    private long dt;
+    private String dt;
 
-    private long sunrise;
+    private String sunrise;
 
-    private long sunset;
+    private String sunset;
 
-    private long moonrise;
+    private String moonrise;
 
-    private long moonset;
+    private String moonset;
 
     private float moon_phase;
 
@@ -89,5 +92,15 @@ public class DailyWeather {
     private String weather_icon;
 
 
+
+    public String changeUnixTime (String timeStampStr) {
+        long timeStamp = Long.parseLong(timeStampStr);
+        Date date = new Date(timeStamp * 1000L);
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        sdf.setTimeZone(TimeZone.getTimeZone("GMT+9"));
+        String formattedDate = sdf.format(date);
+
+        return formattedDate;
+    }
 
 }
