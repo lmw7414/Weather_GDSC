@@ -47,9 +47,9 @@ public class CurrentWeatherController {
             currentWeather.setLon(lon);
             currentWeather.setTimezone((String) jsonObject.get("timezone"));
             currentWeather.setTimezone_offset((long) jsonObject.get("timezone_offset"));
-            currentWeather.setCurrent_dt((long) currentObject.get("dt"));
-            currentWeather.setCurrent_sunrise((long) currentObject.get("sunrise"));
-            currentWeather.setCurrent_sunset((long) currentObject.get("sunset"));
+            currentWeather.setCurrent_dt(currentWeather.changeUnixTime(currentObject.get("dt").toString()));
+            currentWeather.setCurrent_sunrise(currentWeather.changeUnixTime(currentObject.get("sunrise").toString() ));
+            currentWeather.setCurrent_sunset(currentWeather.changeUnixTime(currentObject.get("sunset").toString()));
             currentWeather.setCurrent_temp(Float.parseFloat(currentObject.get("temp").toString()));
             currentWeather.setCurrent_feels_like(Float.parseFloat(currentObject.get("feels_like").toString()));
             currentWeather.setCurrent_pressure((long) currentObject.get("pressure"));
