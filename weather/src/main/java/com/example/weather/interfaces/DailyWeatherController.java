@@ -62,11 +62,11 @@ public class DailyWeatherController {
                 JSONArray dailyWeatherArray = (JSONArray) daily.get("weather");
                 JSONObject dailyWeatherData = (JSONObject)dailyWeatherArray.get(0);
 
-                dailyWeather.setDt((long) daily.get("dt"));
-                dailyWeather.setSunrise((long) daily.get("sunrise"));
-                dailyWeather.setSunset((long) daily.get("sunset"));
-                dailyWeather.setMoonrise((long) daily.get("moonrise"));
-                dailyWeather.setMoonset((long) daily.get("moonset"));
+                dailyWeather.setDt(dailyWeather.changeUnixTime(daily.get("dt").toString()));
+                dailyWeather.setSunrise(dailyWeather.changeUnixTime(daily.get("sunrise").toString()));
+                dailyWeather.setSunset(dailyWeather.changeUnixTime(daily.get("sunset").toString()));
+                dailyWeather.setMoonrise(dailyWeather.changeUnixTime(daily.get("moonrise").toString()));
+                dailyWeather.setMoonset(dailyWeather.changeUnixTime(daily.get("moonset").toString()));
                 dailyWeather.setMoon_phase(Float.parseFloat(daily.get("moon_phase").toString()));  //(float) daily.get("moon_phase")
                 dailyWeather.setPressure((long) daily.get("pressure"));
                 dailyWeather.setHumidity(Float.parseFloat(daily.get("humidity").toString()));
