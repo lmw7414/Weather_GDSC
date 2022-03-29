@@ -33,7 +33,7 @@ public class DailyWeatherController {
                                 @PathVariable("lon") float lon) throws IOException, ParseException {
         String result = "";
         List<DailyWeather> dailyWeathers = new ArrayList<>();
-        DailyWeather dailyWeather = new DailyWeather();
+        DailyWeather dailyWeather;
 
 
             URL url = new URL(BASE_URL + "?lat=" + lat + "&lon=" + lon + "&exclude=hourly,minutely" +"&appid=" + apiKey);
@@ -46,13 +46,16 @@ public class DailyWeatherController {
             JSONArray jsonArr = (JSONArray) jsonObject.get("daily");
 
 
-            dailyWeather.setLat(lat);
-            dailyWeather.setLon(lon);
-            dailyWeather.setTimezone((String) jsonObject.get("timezone"));
-            dailyWeather.setTimezone_offset((long) jsonObject.get("timezone_offset"));
+
 
 
             for(int i=0; i<jsonArr.size(); i++) {
+                dailyWeather = new DailyWeather();
+                dailyWeather.setLat(lat);
+                dailyWeather.setLon(lon);
+                dailyWeather.setTimezone((String) jsonObject.get("timezone"));
+                dailyWeather.setTimezone_offset((long) jsonObject.get("timezone_offset"));
+
                 JSONObject daily = (JSONObject)jsonArr.get(i);
                 JSONObject temp = (JSONObject) daily.get("temp");
                 JSONObject feels_like = (JSONObject) daily.get("feels_like");
